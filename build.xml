@@ -5,9 +5,9 @@
       version 1.1
   -->
 
-  <property file="${user.home}/conf/user.properties"
+  <property file="${user.home}/conf/adligo/user.properties"
           description="properties that tailor the build to your computer."/>
-  <property file="${user.home}/conf/adligo_lib.properties"/>
+  <property file="${user.home}/conf/adligo/adligo_lib.properties"/>
   <property file="build.properties" />
 
 
@@ -75,9 +75,9 @@
         mailhost="mail.adligo.com" subject="test_results"/>
   </target>
 	
-  <target name="swing-test" depends="set-property-values">
+  <target name="swing-test" depends="set-property-values, jar">
 	    <property file="${user.home}/conf/adligo_lib.properties"/>
-	    <property file="build.properties${me};" />
+	    <property file="build.properties" />
 	    <echo> ${build_classpath}${buildname};</echo>
 
 	    <java fork="true" classname="junit.swingui.TestRunner"

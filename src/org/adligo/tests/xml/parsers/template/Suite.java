@@ -13,6 +13,6 @@ import java.lang.reflect.*;
 
 public class Suite extends org.adligo.tests.Suite {
   public static Test suite() {
-    return suite("org.adligo.tests.xml.parsers.template.");
+    return suite("org.adligo.tests.xml.parsers.template.", 7);
   }
 }
