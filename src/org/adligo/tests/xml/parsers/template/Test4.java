@@ -8,12 +8,14 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.parsers.template.*;
+import org.adligo.xml.parsers.template.Templates;
+import org.adligo.xml.parsers.template.TemplateParserEngine;
+import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
 public class Test4 extends TestCase {
   Templates templates = new Templates();
-  private static final String sKey = new String("\r\n  SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
+  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
             "        \r\n        \r\n        \r\n" +
@@ -35,7 +37,6 @@ public class Test4 extends TestCase {
     Param where = new Param("where", new String [] {}, whereArgs);
     params.addParam(where);
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
-
     assertTrue(sResult.indexOf(sKey) > -1);
   }
 

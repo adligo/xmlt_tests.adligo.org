@@ -8,7 +8,9 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.parsers.template.*;
+import org.adligo.xml.parsers.template.Templates;
+import org.adligo.xml.parsers.template.TemplateParserEngine;
+import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
 public class Test2 extends TestCase {
@@ -18,7 +20,7 @@ public class Test2 extends TestCase {
                 "           AND  birthday  <= '2/1/2001' \r\n        )\r\n         OR \r\n" +
                 "        ( birthday  >= '1/1/2002' \r\n" +
                 "           AND  birthday  <= '2/1/2002' \r\n        )\r\n" +
-                "        \r\n      )\r\n" ) ;
+                "        \r\n      )" ) ;
   Templates templates = new Templates();
 
  public Test2(String s) {
@@ -48,7 +50,7 @@ public class Test2 extends TestCase {
     params.addParam("where", new String [] {}, whereParams);
 
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
-
+    
     assertTrue(sResult.indexOf(sKey) > -1);
   }
 }

@@ -8,7 +8,9 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.parsers.template.*;
+import org.adligo.xml.parsers.template.Templates;
+import org.adligo.xml.parsers.template.TemplateParserEngine;
+import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
 public class Test1 extends TestCase {

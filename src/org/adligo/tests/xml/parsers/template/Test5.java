@@ -8,18 +8,20 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.parsers.template.*;
+import org.adligo.xml.parsers.template.Templates;
+import org.adligo.xml.parsers.template.TemplateParserEngine;
+import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
 public class Test5 extends TestCase {
-  private static final String sKey = new String("\r\n  SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
+  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
             "        \r\n        \r\n        \r\n" +
             "          E.type IN (1,2))\r\n" +
             "     AND \r\n" +
             "         EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
-            "        \r\n         E.edited_by IN(1,2)\r\n        \r\n        )\r\n");
+            "        \r\n         E.edited_by IN(1,2)\r\n        \r\n        )");
   Templates templates = new Templates();
 
  public Test5(String s) {
