@@ -55,4 +55,37 @@
       <fileset dir="src" excludes="**/*.java"/>
     </copy>
   </target>
+	
+  <target name="test" depends="set-property-values">
+
+    <property file="${user.home}/conf/adligo_lib.properties"/>
+    <property file="build.properties" />
+    <echo> ${build_classpath}${me};</echo>
+
+    <java fork="true" classname="junit.textui.TestRunner"
+        taskname="junit" failonerror="false" output="test_results" >
+        <classpath>
+          <pathelement path="${build_classpath}${me};" />
+        </classpath>
+        <arg value="org.adligo.tests.xml.parsers.template.Suite"/>
+    </java>
+
+    <echo> ${user_emails}</echo>
+    <mail from="tests@adligo.com" tolist="${user_emails}" messagefile="test_results"
+        mailhost="mail.adligo.com" subject="test_results"/>
+  </target>
+	
+  <target name="swing-test" depends="set-property-values">
+	    <property file="${user.home}/conf/adligo_lib.properties"/>
+	    <property file="build.properties${me};" />
+	    <echo> ${build_classpath}${buildname};</echo>
+
+	    <java fork="true" classname="junit.swingui.TestRunner"
+	        taskname="junit" failonerror="false" output="test_results" >
+	        <classpath>
+	          <pathelement path="${build_classpath}${me};" />
+	        </classpath>
+	        <arg value="org.adligo.tests.xml.parsers.template.Suite"/>
+	    </java>
+	  </target>
 </project>
