@@ -37,6 +37,9 @@ public class Test0 extends TestCase {
     params.addParam(where);
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
 
-    assertTrue(sResult.indexOf(sKey) > -1);
+    
+    assertTrue( "Test returned '" + sResult + 
+    		"' \n\n and should have returned '" + sKey + "'",
+			sResult.indexOf(sKey) > -1);
   }
 }

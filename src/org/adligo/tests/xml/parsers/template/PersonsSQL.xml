@@ -58,26 +58,5 @@
     </html>
   </template>
 
-  <template name="test1">
-    foo bar walks
-    <param name="cow" nested_seperator=" OR ">
-      <param name="horse" nested_seperator=" + ">
-        <param name="pig" >
-          big bas <value/> foobar
-        </param>
-        <param name="frog" >
-          little smitten <value/> og
-        </param>
-      </param>
-      <param name="ox" nested_seperator=" - ">
-        <param name="pig" >
-          big bas <value/> foobar
-        </param>
-        <param name="frog" >
-          little smitten <value/> og
-        </param>
-      </param>
-    </param>
-    on the moo
-  </template>
+ 
 </templates>
