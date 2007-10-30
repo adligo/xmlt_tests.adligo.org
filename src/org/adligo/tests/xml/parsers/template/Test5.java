@@ -13,7 +13,7 @@ import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
-public class Test5 extends TestCase {
+public class Test5 extends TimedTest {
   private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
@@ -43,7 +43,13 @@ public class Test5 extends TestCase {
     whereArgs.addParam("p_e_addresses",null, addressArgs2, null);
     Param where = new Param("where", new String [] {}, whereArgs);
     params.addParam(where);
-   String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
+    
+    //inital parse
+    templates.getTemplate("persons");
+    long start = System.nanoTime();
+    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
+    long end = System.nanoTime();
+    super.addTime(end - start);
 
     assertTrue (sResult.indexOf(sKey) > -1);
   }

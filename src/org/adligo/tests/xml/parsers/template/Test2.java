@@ -13,7 +13,7 @@ import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
-public class Test2 extends TestCase {
+public class Test2 extends TimedTest {
   private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
                 "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
                 "    \r\n    \r\n      (\r\n        ( birthday  >= '1/1/2001' \r\n" +
@@ -49,7 +49,12 @@ public class Test2 extends TestCase {
     whereParams.addParam("birthday",null, birthdayParams);
     params.addParam("where", new String [] {}, whereParams);
 
+    //inital parse
+    templates.getTemplate("persons");
+    long start = System.nanoTime();
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
+    long end = System.nanoTime();
+    super.addTime(end - start);
     
     assertTrue(sResult.indexOf(sKey) > -1);
   }

@@ -13,7 +13,7 @@ import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import junit.framework.TestCase;
 
-public class Test0 extends TestCase {
+public class Test0 extends TimedTest {
   Templates templates = new Templates();
   private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
             "  FROM persons p\r\n   WHERE\r\n" +
@@ -35,8 +35,13 @@ public class Test0 extends TestCase {
     whereArgs.addParam("fname",new String [] {"'bob'"}, null);
     Param where = new Param("where", new String [] {}, whereArgs);
     params.addParam(where);
+    
+    //inital parse
+    templates.getTemplate("persons");
+    long start = System.nanoTime();
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
-
+    long end = System.nanoTime();
+    super.addTime(end - start);
     
     assertTrue( "Test returned '" + sResult + 
     		"' \n\n and should have returned '" + sKey + "' "

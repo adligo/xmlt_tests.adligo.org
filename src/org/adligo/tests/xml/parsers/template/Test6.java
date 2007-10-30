@@ -13,7 +13,7 @@ import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.params.*;
 import junit.framework.TestCase;
 
-public class Test6 extends TestCase {
+public class Test6 extends TimedTest {
   private static final String sKey = new String("SELECT  TOP  \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
@@ -56,11 +56,33 @@ public class Test6 extends TestCase {
      */
     Params.addParam(params, new Param("maxrows", null, null), false);
     
+    //inital parse
+    templates.getTemplate("persons");
+    long start = System.nanoTime();
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
-
-    System.out.println(sResult);
+    long end = System.nanoTime();
+    super.addTime(end - start);
+    
+    //System.out.println(sResult);
 
     assertTrue (sResult.indexOf(sKey) > -1);
+  }
+  
+  public void tearDown() {
+	  long totalTime = super.getTime();
+	  int total = super.getNumber();
+	  int avg = (int) totalTime/total;
+	  long secondInNanos = 1000000000;
+	  int Hz = (int) (secondInNanos/avg);
+	  
+	  System.out.println("parseing of compiled Template " +
+	  		" objects and params took " + totalTime + " nano seconds " +
+	  		" for " + total + " parsings having a average of " +
+	  		avg + " nano seconds per parsing \n" +
+	  		" There are 1,000,000 nano seconds in one millisecond " + 
+	  		" and 1,000 milliseconds in one second " +
+	  		" so frequency is " + Hz + " executions per second");
+	  //2k-3k per second
   }
 
 }
