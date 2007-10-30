@@ -39,7 +39,8 @@ public class Test0 extends TestCase {
 
     
     assertTrue( "Test returned '" + sResult + 
-    		"' \n\n and should have returned '" + sKey + "'",
+    		"' \n\n and should have returned '" + sKey + "' "
+    		+ " index is " + sResult.indexOf(sKey),
 			sResult.indexOf(sKey) > -1);
   }
 }
