@@ -8,7 +8,8 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.params.*;
+import org.adligo.models.params.client.Param;
+import org.adligo.models.params.client.Params;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import junit.framework.TestCase;
