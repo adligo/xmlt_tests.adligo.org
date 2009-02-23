@@ -10,6 +10,7 @@ package org.adligo.tests.xml.parsers.template;
  */
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
+import org.adligo.tests.InitJ2SE;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import junit.framework.TestCase;
@@ -25,6 +26,10 @@ public class Test6 extends TimedTest {
             "        \r\n         E.edited_by IN(1,2)\r\n        \r\n        )");
   Templates templates = new Templates();
 
+  static {
+	  InitJ2SE.init();
+  }
+  
  public Test6(String s) {
   super(s);
  }
@@ -34,6 +39,12 @@ public class Test6 extends TimedTest {
   }
 
   public void test6() {
+	for (int i = 0; i < 1000; i++) {
+		runMe();
+	}  
+  }
+  
+  public void runMe() {
     Params params = new Params();
     Params whereArgs = new Params();
     Params addressArgs = new Params();

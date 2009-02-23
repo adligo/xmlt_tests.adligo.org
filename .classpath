@@ -4,10 +4,10 @@
 	<classpathentry kind="src" path="/i_persistence"/>
 	<classpathentry kind="src" path="/xmlt"/>
 	<classpathentry kind="src" path="/params"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Junit"/>
-	<classpathentry kind="src" path="/tests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/commons-logging"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/tests"/>
 	<classpathentry kind="output" path="cbin"/>
 </classpath>
