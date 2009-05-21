@@ -8,11 +8,9 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import org.adligo.xml.parsers.template.Templates;
-import org.adligo.xml.parsers.template.TemplateParserEngine;
-import junit.framework.TestCase;
+import org.adligo.tests.ATest;
 
-public class TimedTest extends TestCase {
+public class TimedTest extends ATest {
     private static long time = 0;
     private static int number = 0;
     
@@ -32,5 +30,7 @@ public class TimedTest extends TestCase {
 	public static int getNumber() {
 		return number;
 	}
+	
+	public void testNothing() {}
  
 }

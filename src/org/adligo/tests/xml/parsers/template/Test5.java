@@ -15,14 +15,18 @@ import org.adligo.xml.parsers.template.TemplateParserEngine;
 import junit.framework.TestCase;
 
 public class Test5 extends TimedTest {
-  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
+  private static final String sKey = new String("SELECT \r\n" +
+		  "  \r\n" +
+		  "  \r\n" +
+  		"  fname, mname, lname, nickname, birthday, comment\r\n" +
+  		"  \r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
             "        \r\n        \r\n        \r\n" +
             "          E.type IN (1,2))\r\n" +
             "     AND \r\n" +
             "         EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
-            "        \r\n         E.edited_by IN(1,2)\r\n        \r\n        )");
+            "        \r\n         E.edited_by IN (3,4)\r\n        \r\n        )");
   Templates templates = new Templates();
 
  public Test5(String s) {
@@ -35,14 +39,21 @@ public class Test5 extends TimedTest {
 
   public void test5() {
     Params params = new Params();
+    params.addParam("default");
     Params whereArgs = new Params();
     Params addressArgs = new Params();
     Params addressArgs2 = new Params();
-    addressArgs.addParam("type_l",new String [] {"1", "2"}, null);
-    whereArgs.addParam("p_e_addresses",null, addressArgs, new int [] {1});
-    addressArgs2.addParam("edited_by",new String [] {"1", "2"}, null);
-    whereArgs.addParam("p_e_addresses",null, addressArgs2, null);
-    Param where = new Param("where", new String [] {}, whereArgs);
+    Param typeParam = addressArgs.addParam("type_l",new String [] {"IN (", ")"});
+    typeParam.addValue(1);
+    typeParam.addValue(2);
+    
+    Param peParam = whereArgs.addParam("p_e_addresses", addressArgs);
+    peParam.setOperator("NOT");
+    Param editedByParam = addressArgs2.addParam("edited_by",new String [] {"IN (", ")"});
+    editedByParam.addValue(3);
+    editedByParam.addValue(4);
+    whereArgs.addParam("p_e_addresses",addressArgs2);
+    Param where = new Param("where", whereArgs);
     params.addParam(where);
     
     //inital parse
@@ -52,7 +63,7 @@ public class Test5 extends TimedTest {
     long end = System.nanoTime();
     super.addTime(end - start);
 
-    assertTrue (sResult.indexOf(sKey) > -1);
+    assertEquals(sKey, sResult);
   }
 
 }

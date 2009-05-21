@@ -8,21 +8,28 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
+import java.text.SimpleDateFormat;
+
 import org.adligo.models.params.client.Params;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
-import junit.framework.TestCase;
 
 public class Test2 extends TimedTest {
-  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
-                "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
-                "    \r\n    \r\n      (\r\n        ( birthday  >= '1/1/2001' \r\n" +
-                "           AND  birthday  <= '2/1/2001' \r\n        )\r\n         OR \r\n" +
-                "        ( birthday  >= '1/1/2002' \r\n" +
-                "           AND  birthday  <= '2/1/2002' \r\n        )\r\n" +
+  private static final String sKey = new String("SELECT \r\n" +
+		  		"  \r\n" +
+		  		"  \r\n" +
+  				"  fname, mname, lname, nickname, birthday, comment\r\n" +
+  				"  \r\n" +
+  				"  FROM persons p\r\n" +
+                "   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
+                "    \r\n    \r\n      (\r\n        ( birthday >= '01/01/2001' \r\n" +
+                "           AND  birthday <= '02/01/2001' \r\n        )\r\n         OR \r\n" +
+                "        ( birthday >= '01/01/2002' \r\n" +
+                "           AND  birthday <= '02/01/2002' \r\n        )\r\n" +
                 "        \r\n      )" ) ;
   Templates templates = new Templates();
-
+  private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+  
  public Test2(String s) {
   super(s);
  }
@@ -31,31 +38,33 @@ public class Test2 extends TimedTest {
     templates.parseResource("/org/adligo/tests/xml/parsers/template/PersonsSQL.xml");
   }
 
-  public void test2() {
+  public void test2() throws Exception {
     Params params = new Params();
+    params.addParam("default");
     Params whereParams = new Params();
     Params birthdayParams = new Params();
     Params birthdayRangeParams1 = new Params();
     Params birthdayRangeParams2 = new Params();
 
-    birthdayRangeParams1.addParam("start_range", new String[] {" >= '1/1/2001' "}, null);
-    birthdayRangeParams1.addParam("end_range", new String[] {" <= '2/1/2001' "}, null);
-    birthdayParams.addParam("range", null, birthdayRangeParams1);
+    birthdayRangeParams1.addParam("start_range", ">=",  sdf.parse("1/1/2001"));
+    birthdayRangeParams1.addParam("end_range", "<=", sdf.parse("2/1/2001"));
+    birthdayParams.addParam("range", birthdayRangeParams1);
 
-    birthdayRangeParams2.addParam("start_range", new String[] {" >= '1/1/2002' "}, null);
-    birthdayRangeParams2.addParam("end_range", new String[] {" <= '2/1/2002' "}, null);
-    birthdayParams.addParam("range", null, birthdayRangeParams2);
+    birthdayRangeParams2.addParam("start_range", ">=", sdf.parse("1/1/2002"));
+    birthdayRangeParams2.addParam("end_range", "<=", sdf.parse("2/1/2002"));
+    birthdayParams.addParam("range", birthdayRangeParams2);
 
-    whereParams.addParam("birthday",null, birthdayParams);
-    params.addParam("where", new String [] {}, whereParams);
+    whereParams.addParam("birthday",birthdayParams);
+    params.addParam("where", whereParams);
 
     //inital parse
     templates.getTemplate("persons");
     long start = System.nanoTime();
-    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
+    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), 
+    		new TestParamDecorator(params));
     long end = System.nanoTime();
     super.addTime(end - start);
     
-    assertTrue(sResult.indexOf(sKey) > -1);
+    assertEquals(sKey,sResult);
   }
 }

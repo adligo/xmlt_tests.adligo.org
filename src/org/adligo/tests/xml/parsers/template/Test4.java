@@ -16,8 +16,12 @@ import junit.framework.TestCase;
 
 public class Test4 extends TimedTest {
   Templates templates = new Templates();
-  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
-            "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
+  private static final String sKey = new String("SELECT \r\n" +
+		  	"  \r\n" +
+		  	"  \r\n" +
+		  	"  fname, mname, lname, nickname, birthday, comment\r\n" +
+		  	"  \r\n" +
+		  	"  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
             "        \r\n        \r\n        \r\n" +
             "          E.type IN (1,2))" );
@@ -31,11 +35,15 @@ public class Test4 extends TimedTest {
 
   public void test4() {
     Params params = new Params();
+    params.addParam("default");
     Params whereArgs = new Params();
     Params addressArgs = new Params();
-    addressArgs.addParam("type_l",new String [] {"1", "2"}, null);
-    whereArgs.addParam("p_e_addresses",null, addressArgs, new int [] {1});
-    Param where = new Param("where", new String [] {}, whereArgs);
+    Param addParam = addressArgs.addParam("type_l",new String [] {"IN (",")"},1);
+    addParam.addValue(2);
+    Param peParam = whereArgs.addParam("p_e_addresses");
+    peParam.setOperator("NOT");
+    peParam.setParams(addressArgs);
+    Param where = new Param("where", whereArgs);
     params.addParam(where);
     
     //inital parse
@@ -45,7 +53,7 @@ public class Test4 extends TimedTest {
     long end = System.nanoTime();
     super.addTime(end - start);
     
-    assertTrue(sResult.indexOf(sKey) > -1);
+    assertEquals(sKey, sResult);
   }
 
 }

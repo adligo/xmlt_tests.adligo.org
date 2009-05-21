@@ -16,7 +16,11 @@ import junit.framework.TestCase;
 
 public class Test3 extends TimedTest {
   Templates templates = new Templates();
-  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
+  private static final String sKey = new String("SELECT \r\n" +
+		   "  \r\n" +
+		   "  \r\n" +
+		   "  fname, mname, lname, nickname, birthday, comment\r\n" +
+		   "  \r\n" +
             "  FROM persons p\r\n   WHERE\r\n" +
             "     oid NOT IN (1,2) \r\n    \r\n     AND ( fname LIKE 'joe'  OR  fname LIKE 'bob' )");
 
@@ -30,21 +34,25 @@ public class Test3 extends TimedTest {
 
   public void test3() {
     Params params = new Params();
+    params.addParam("default");
     Params whereArgs = new Params();
-    whereArgs.addParam("oid",new String [] {"1","2"}, null, new int [] {1});
-    whereArgs.addParam("fname",new String [] {"'joe'"}, null);
-    whereArgs.addParam("fname",new String [] {"'bob'"}, null);
-    Param where = new Param("where", new String [] {}, whereArgs);
+    Param oidParam = whereArgs.addParam("oid",new String [] {"NOT IN (", ")"}, 1);
+    oidParam.addValue(2);
+    whereArgs.addParam("fname","LIKE", "joe");
+    whereArgs.addParam("fname","LIKE", "bob");
+    Param where = new Param("where", whereArgs);
     params.addParam(where);
     
     //inital parse
     templates.getTemplate("persons");
     long start = System.nanoTime();
-    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), params);
+    String sResult = TemplateParserEngine.parse(
+    		templates.getTemplate("persons"),
+    		new TestParamDecorator(params));
     long end = System.nanoTime();
     super.addTime(end - start);
     
-    assertTrue(sResult.indexOf(sKey) > -1);
+    assertEquals(sKey, sResult);
   }
 
 }

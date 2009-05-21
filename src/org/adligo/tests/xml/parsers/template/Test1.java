@@ -12,13 +12,18 @@ import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
-import junit.framework.TestCase;
 
 public class Test1 extends TimedTest {
   Templates templates = new Templates();
-  private static final String sKey = new String("SELECT \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
-            "  FROM persons p\r\n   WHERE\r\n" +
-            "    \r\n     parent IN (7)");
+  private static final String sKey = new String("SELECT \r\n" +
+		  	"  \r\n" +
+		  	"  \r\n" +
+		  	"  fname, mname, lname, nickname, birthday, comment\r\n" +
+		  	"  \r\n" +
+		  	"  FROM persons p\r\n" +
+            "   WHERE\r\n" +
+            "    \r\n" +
+            "     parent IN (7)");
 
  public Test1(String s) {
   super(s);
@@ -30,9 +35,10 @@ public class Test1 extends TimedTest {
 
   public void test1() {
     Params params = new Params();
+    params.addParam("default");
     Params whereArgs = new Params();
-    whereArgs.addParam("parent",new String [] {"7"}, null);
-    Param where = new Param("where", new String [] {}, whereArgs);
+    whereArgs.addParam("parent",new String[] {"IN (", ")"},7);
+    Param where = new Param("where", whereArgs);
     params.addParam(where);
     
     //inital parse
@@ -42,6 +48,6 @@ public class Test1 extends TimedTest {
     long end = System.nanoTime();
     super.addTime(end - start);
     
-    assertTrue(sResult.indexOf(sKey) > -1);
+    assertEquals(sKey, sResult);
   }
 }

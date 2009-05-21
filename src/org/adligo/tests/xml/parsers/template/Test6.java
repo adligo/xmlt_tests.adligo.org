@@ -16,14 +16,16 @@ import org.adligo.xml.parsers.template.TemplateParserEngine;
 import junit.framework.TestCase;
 
 public class Test6 extends TimedTest {
-  private static final String sKey = new String("SELECT  TOP  \r\n  fname, mname, lname, nickname, birthday, comment\r\n" +
+  private static final String sKey = new String("SELECT  TOP  \r\n" +
+  		"   fname || mname || lname \r\n" +
+  		"  \r\n" +
             "  FROM persons p\r\n   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
             "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
             "        \r\n        \r\n        \r\n" +
             "          E.type IN (1,2))\r\n" +
             "     AND \r\n" +
             "         EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND\r\n" +
-            "        \r\n         E.edited_by IN(1,2)\r\n        \r\n        )");
+            "        \r\n         E.edited_by IN (1,2)\r\n        \r\n        )");
   Templates templates = new Templates();
 
   static {
@@ -46,27 +48,33 @@ public class Test6 extends TimedTest {
   
   public void runMe() {
     Params params = new Params();
+    params.addParam("name");
     Params whereArgs = new Params();
     Params addressArgs = new Params();
     Params addressArgs2 = new Params();
-    addressArgs.addParam("type_l",new String [] {"1", "2"}, null);
-    whereArgs.addParam("p_e_addresses",null, addressArgs, new int [] {1});
-    addressArgs2.addParam("edited_by",new String [] {"1", "2"}, null);
-    whereArgs.addParam("p_e_addresses",null, addressArgs2, null);
-    Param where = new Param("where", new String [] {}, whereArgs);
+    Param addParam = addressArgs.addParam("type_l", new String[] {"IN (", ")"},1);
+    addParam.addValue(2);
+    Param peParam = whereArgs.addParam("p_e_addresses",addressArgs);
+    peParam.setOperator("NOT");
+    Param editBy = addressArgs2.addParam("edited_by",new String [] {"IN (", ")"});
+    editBy.addValue(1);
+    editBy.addValue(2);
+    
+    whereArgs.addParam("p_e_addresses",addressArgs2);
+    Param where = new Param("where", whereArgs);
     params.addParam(where);
     /* Add this at the end to see if the maxrows param is added twice */
-    Params.addParam(params, new Param("maxrows", null, null), false);
+    Params.addParam(params, new Param("maxrows"), false);
     /* add the foo param so we can move the currentParam pointer to the foo param 
      * which is after the maxrows param
      */
-    params.addParam("foo", null, null);
+    params.addParam("foo");
     params.First();
     params.getNextParam("foo");
     /* try to add the maxrows param a second time since the current param is after 
      * the previous maxrows param
      */
-    Params.addParam(params, new Param("maxrows", null, null), false);
+    Params.addParam(params, new Param("maxrows"), false);
     
     //inital parse
     templates.getTemplate("persons");
@@ -77,7 +85,7 @@ public class Test6 extends TimedTest {
     
     //System.out.println(sResult);
 
-    assertTrue (sResult.indexOf(sKey) > -1);
+    assertEquals(sKey, sResult);
   }
   
   public void tearDown() {
