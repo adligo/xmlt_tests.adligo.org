@@ -1,0 +1,239 @@
+<!--  general comments about this schema
+	  it is completely normalized, and all tables
+	  with version columns will be tracked with historical
+	  sibling tables, which will keep a record of their history (previous row data)
+	  and historical relations ships (previous address, phones exc)
+	  
+	  also edited_by goes to the users table (originally went to the persons table)
+	  
+ -->
+<templates>
+	<!-- these are like sequences  -->
+	<template name="createTableIds">
+		CREATE TABLE table_ids (
+			name VARCHAR(500) PRIMARY KEY,
+			tid int
+		)
+	</template> 
+	<!-- 
+	   gender uses M for male F for female
+	      other genders are O unless the system 
+	      requires more specific types
+	 -->
+	<template name="createPersons">
+		CREATE TABLE persons (
+			tid int PRIMARY KEY, 
+			version int NOT NULL,
+			fname VARCHAR(100),
+			mname VARCHAR(100),
+			lname VARCHAR(200),
+			nickname VARCHAR(200),
+			birthday date,
+			died date,
+			gender char(1),
+			edited date NOT NULL,
+			edited_by int NOT NULL
+		)
+	</template>
+	<!--  user id includes domain (or in other words whole dn from ldap server) -->
+	<template name="createUsers">
+		CREATE TABLE users (
+			tid int PRIMARY KEY,
+			person int,
+			user_id VARCHAR(1500) NOT NULL
+		)
+	</template>
+	<!-- eaddresses stand for electronic addresses
+		things like email, website, webpage
+	 -->
+	<template name="createEaddressesTypes">
+		CREATE TABLE e_address_types (
+				tid int PRIMARY KEY,
+				name VARCHAR(100) NOT NULL
+			)
+	</template>
+	<!-- eaddresses stand for electronic addresses 
+		type is a feorgin key to e_address_types tid
+	-->
+	<template name="createEaddresses">
+		CREATE TABLE e_addresses (
+			tid int PRIMARY KEY,
+			version int NOT NULL,
+			address VARCHAR(3000),
+			type int NOT NULL,
+			edited date NOT NULL,
+			edited_by int NOT NULL
+		)
+	</template>
+	<!-- this is where you could store things like 
+		work, personal,owner, admin exc 
+		(with e_address_types you get work email exc)
+	 -->
+	<template name="personsToEaddressesTypes">
+		CREATE TABLE persons_to_e_address_types (
+				tid int PRIMARY KEY, 
+				name VARCHAR(100) NOT NULL,
+				edited date NOT NULL,
+				edited_by int NOT NULL
+			)
+	</template>
+	<template name="createPersonsToEaddresses">
+		CREATE TABLE persons_to_e_addresses (
+			tid int PRIMARY KEY,
+			person int NOT NULL,
+			address int NOT NULL,
+			type int
+		)
+	</template>
+	<!--  only store the phone as a number to keep from duplicates (one for alpha -->
+	<template name="createPhones">
+		CREATE TABLE phones (
+			tid int PRIMARY KEY,
+			version int NOT NULL,
+			phone BIGINT NOT NULL,
+			edited date NOT NULL,
+			edited_by int NOT NULL
+		)
+	</template>
+	<!--  this is the table that would store things like 
+		mobile, work phone, fax, home and fax exc -->
+	<template name="createPersonsToPhoneTypes">
+		CREATE TABLE persons_to_phone_types (
+			tid int PRIMARY KEY,
+			name VARCHAR(100) NOT NULL
+		)
+	</template>
+	<template name="createPersonsToPhones">
+		CREATE TABLE persons_to_phones (
+			tid int PRIMARY KEY,
+			phone int NOT NULL,
+			person int NOT NULL,
+			type int ,
+			extension int
+		)
+	</template>	
+	<!--  sub is the iso code for state IL, IA, NY exc 
+		TODO check the max size for sub code (may be 4 if I remember right)
+		also unit is separated out for apartment number, suite number
+		to try to get users to enter this correctly you will
+		need some fancy validation logic
+	-->
+	<template name="createAddresses">
+		CREATE TABLE addresses (
+			tid int PRIMARY KEY,
+			version int NOT NULL,
+			country char(2) NOT NULL,
+			sub varchar(2) NOT NULL,
+			city varchar(100) NOT NULL,
+			zip int NOT NULL,
+			address varchar(200) NOT NULL,
+			unit varchar(50),
+			edited date NOT NULL,
+			edited_by int NOT NULL
+		)
+	</template>
+	<!--  type (name) her could be  home, office, school exc-->
+	<template name="createPersonsToAddresseTypes">
+		CREATE TABLE persons_to_address_types (
+			tid int PRIMARY KEY,
+			name varchar(150) NOT NULL
+		)
+	</template>	
+	<template name="createPersonsToAddresses">
+		CREATE TABLE persons_to_addresses (
+			tid int PRIMARY KEY,
+			address int NOT NULL,
+			person int NOT NULL,
+			type int 
+		)
+	</template>	
+	<template name="addTableIds">
+		Insert into table_ids (name, tid) 
+		SELECT 'users',1 FROM table_ids
+		UNION SELECT 'persons',1 FROM table_ids
+		UNION SELECT 'e_address_types',1 FROM table_ids
+		UNION SELECT 'e_addresses',1 FROM table_ids
+		UNION SELECT 'persons_to_e_address_types',1 FROM table_ids
+		UNION SELECT 'persons_to_e_addresses',1 FROM table_ids
+		UNION SELECT 'phones',1 FROM table_ids
+		UNION SELECT 'persons_to_phone_types',1 FROM table_ids
+		UNION SELECT 'persons_to_phones',1 FROM table_ids
+		UNION SELECT 'addresses',1 FROM table_ids
+		UNION SELECT 'persons_to_address_types',1 FROM table_ids
+		UNION SELECT 'persons_to_addresses',1 FROM table_ids
+		; 
+	</template>
+	<template name="addSystemUser_1">
+		UPDATE table_ids SET tid = 2 WHERE name = 'users';
+	</template>
+	<template name="addSystemUser_2">
+		INSERT INTO users (tid, user_id) 
+		VALUES (1, 'system');
+	</template>
+	<template name="reservePeopleIds">
+		UPDATE table_ids SET tid = 4 WHERE name = 'persons';
+	</template>
+	<template name="addJohn">
+		INSERT INTO persons (tid, version, fname, lname, edited, edited_by) 
+		VALUES (1, 0, 'john','doe', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="addLisa">
+		INSERT INTO persons (tid, version, fname, lname, edited, edited_by) 
+		VALUES (2, 0, 'lisa','Smith', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="addChris">
+		INSERT INTO persons (tid, version, fname, lname, edited, edited_by) 
+		VALUES (3, 0, 'Chris','Holst', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="reservePersons_to_addr_types">
+		UPDATE table_ids SET tid = 3 WHERE name = 'persons_to_address_types';
+	</template>
+	<template name="addHome">
+		INSERT INTO persons_to_address_types (tid, name) 
+		VALUES (1, 'Home');
+	</template>
+	<template name="addOffice">
+		INSERT INTO persons_to_address_types (tid, name) 
+		VALUES (2, 'Office');
+	</template>
+	<template name="reserveAddressIds">
+		UPDATE table_ids SET tid = 3 WHERE name = 'addresses';
+	</template>
+	<template name="addAdligoOffice">
+		INSERT INTO addresses (tid,version,country,sub,city,zip,
+			address,edited,edited_by)
+		VALUES (1, 0, 'US','IL', 'Chicago',60647,
+			'2620 N. Saint Louis Ave', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="addSomeHome">
+		INSERT INTO addresses (tid,version,country,sub,city,zip,
+			address,edited,edited_by)
+		VALUES (2, 0, 'US','IL', 'Chicago',60660,
+			'1600 N. Western', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="addSomeOtherHome">
+		INSERT INTO addresses (tid,version,country,sub,city,zip,
+			address,edited,edited_by)
+		VALUES (3, 0, 'US','IA', 'Moscow',50612,
+			'46 route 3', CURRENT_TIMESTAMP, 1);
+	</template>
+	<template name="reservePArelations">
+		UPDATE table_ids SET tid = 5 WHERE name = 'persons_to_addresses';
+	</template>
+	<template name="johnsOfficeAdligo">
+		INSERT INTO persons_to_addresses (tid, person, address, type)
+		VALUES (1, 1, 1, 2);
+	</template>
+	<template name="lisasOfficeAdligo">
+		INSERT INTO persons_to_addresses (tid, person, address, type)
+		VALUES (2, 2, 1, 2);
+	</template>
+	<template name="lisasHome">
+		INSERT INTO persons_to_addresses (tid, person, address, type)
+		VALUES (3, 2, 2, 1);
+	</template>
+	<template name="chrisHome">
+		INSERT INTO persons_to_addresses (tid, person, address, type)
+		VALUES (4, 3, 3, 1);
+	</template>
+</templates>
