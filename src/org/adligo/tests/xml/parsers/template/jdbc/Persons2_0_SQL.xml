@@ -21,18 +21,18 @@
         </param>
       )
     </param>
-    <param name="persons_to_e_addresses" nested_separator=" AND ">
-        <operator/> EXISTS (SELECT tid FROM persons_to_e_addresses PE WHERE P.tid = PE.person AND
-        	EXISTS (SELECT tid FROM e_addresses E WHERE PE.e_address = E.tid
+    <param name="persons_to_addresses" nested_separator=" AND ">
+        <operator/> EXISTS (SELECT tid FROM persons_to_addresses PA WHERE P.tid = PA.person AND
+        	EXISTS (SELECT tid FROM addresses A WHERE PA.address = A.tid
         <param name="edited" >
           (<param name="range" separator=" OR " nested_separator=" AND ">
-            (<param name="start_range"> E.edited <operator/><value/></param>
-            <param name="end_range"> E.edited <operator/><value/></param>)
+            (<param name="start_range"> A.edited <operator/><value/></param>
+            <param name="end_range"> A.edited <operator/><value/></param>)
           </param>)
         </param>
-        <param name="edited_by" delimiter="," > E.edited_by <operator/><value/><operator id="1"/></param>
-        <param name="address" separator=" OR " pre="(" post=")"> E.address <operator/> <value/></param>
-        <param name="type" delimiter=",">  PE.type <operator/><value/><operator id="1"/></param>)
+        <param name="edited_by" delimiter="," > A.edited_by <operator/><value/><operator id="1"/></param>
+        <param name="address" separator=" OR " pre="(" post=")"> A.address <operator/> <value/></param>
+        <param name="type" delimiter=",">  PA.type <operator/><value/><operator id="1"/></param>)
     </param>
   </param>
   </template>
