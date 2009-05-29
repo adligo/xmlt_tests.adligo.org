@@ -4,7 +4,7 @@
   SELECT <param name="maxrows"> TOP <value/> </param>
   <param name="name"> fname || ' ' || lname </param>
   <param name="default">
-  fname, mname, lname, nickname, birthday, comment
+  tid, version, edited, edited_by, fname, mname, lname, nickname, birthday
   </param>
   FROM persons p
   <param name="where" nested_separator=" AND "> WHERE

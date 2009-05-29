@@ -17,10 +17,13 @@ import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserValues;
 public class TestDatabase {
 	private static final Log log = LogFactory.getLog(TestDatabase.class);
 	private static boolean createdDb = false;
+	private static Connection connection;
 	
-	public static Connection getMemConnection() throws SQLException {
-		
-		return DriverManager.getConnection("jdbc:hsqldb:mem:aname", "sa", "");
+	public static synchronized Connection getMemConnection() throws SQLException {
+		if (connection == null) {
+			connection =DriverManager.getConnection("jdbc:hsqldb:mem:aname", "sa", "");
+		}
+		return connection;
 	}
 	
 	public static synchronized void createTestDb() throws SQLException {
