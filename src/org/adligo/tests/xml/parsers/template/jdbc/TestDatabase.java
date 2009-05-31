@@ -12,7 +12,7 @@ import org.adligo.models.params.client.Param;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
-import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserValues;
+import org.adligo.xml.parsers.template.jdbc.JdbcEngineInput;
 
 public class TestDatabase {
 	private static final Log log = LogFactory.getLog(TestDatabase.class);
@@ -37,7 +37,7 @@ public class TestDatabase {
 			Templates templates = new Templates();
 			templates.parseResource("/org/adligo/tests/xml/parsers/template/jdbc/CreateTestDb.xml");
 			
-			JdbcTemplateParserValues values = new JdbcTemplateParserValues();
+			JdbcEngineInput values = new JdbcEngineInput();
 			values.setParams(new Param());
 			values.setConnection(con);
 			
@@ -51,7 +51,7 @@ public class TestDatabase {
 	}
 
 	private static void executeTemplate(Templates templates,
-			JdbcTemplateParserValues values, String templateName) throws SQLException {
+			JdbcEngineInput values, String templateName) throws SQLException {
 		log.info("executing template " + templateName);
 		
 		Template temp = templates.getTemplate(templateName);

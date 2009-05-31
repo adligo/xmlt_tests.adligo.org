@@ -11,26 +11,22 @@ import org.adligo.i.log.client.LogFactory;
 import org.adligo.models.params.client.I_Operators;
 import org.adligo.models.params.client.Operators;
 import org.adligo.models.params.client.Params;
+import org.adligo.models.params.client.SqlOperators;
 import org.adligo.tests.ATest;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.parsers.template.Templates;
+import org.adligo.xml.parsers.template.jdbc.BaseSqlOperators;
 import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
-import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserValues;
+import org.adligo.xml.parsers.template.jdbc.JdbcEngineInput;
 import org.adligo.xml.parsers.template.jdbc.PrettyParamDecorator;
 
 
 public class TestJdbcQueries extends ATest {
 	private static final Log log = LogFactory.getLog(TestJdbcQueries.class);
-	private Set<I_Operators> operators = getAllOperators();
 	Templates templates = new Templates();
 	
-	public Set<I_Operators> getAllOperators() {
-		Set<I_Operators> toRet = new HashSet<I_Operators>();
-		toRet.add(new Operators("="));
-		
-		return Collections.unmodifiableSet(toRet);
-	}
+	
 	
 	public void setUp() throws SQLException {
 		TestDatabase.createTestDb();
@@ -41,10 +37,10 @@ public class TestJdbcQueries extends ATest {
 		Params params = new Params();
 		params.addParam("default");
 		Params where_params = params.addWhereParams();
-		where_params.addParam("fname","=", "john");
+		where_params.addParam("fname",SqlOperators.EQUALS, "john");
 		
-		JdbcTemplateParserValues jdbcValues = new JdbcTemplateParserValues();
-		jdbcValues.setAllowedOperators(operators);
+		JdbcEngineInput jdbcValues = new JdbcEngineInput();
+		jdbcValues.setAllowedOperators(BaseSqlOperators.OPERATORS);
 		jdbcValues.setParams(params);
 		Template personsTemp = templates.getTemplate("persons");
 		jdbcValues.setTemplate(personsTemp);
