@@ -8,7 +8,10 @@
   </param>
   FROM persons p
   <param name="where" nested_separator=" AND "> WHERE
-    <param name="tid" delimiter="," ><operator id="2" /> tid <operator/><value/><operator id="1" /> </param>
+    <param name="id" delimiter="," ><operator id="2" /> tid <operator/><value/><operator id="1" /> </param>
+    <param name="edited" delimiter="," separator=" OR " pre="(" post=")"> p.edited <operator/> <value/> </param>
+    <param name="is_alive" delimiter="," separator=" OR " pre="(" post=")"> is_alive <operator/> <value/> </param>
+    <param name="height" delimiter="," separator=" OR " pre="(" post=")"> height <operator/> <value/> </param>
     <param name="fname" delimiter="," separator=" OR " pre="(" post=")"> fname <operator/> <value/> </param>
     <param name="mname" delimiter="," separator=" OR " pre="(" post=")"> mname <operator/> <value/> </param>
     <param name="lname" delimiter="," separator=" OR " pre="(" post=")"> lname <operator/> <value/> </param>
