@@ -6,7 +6,7 @@ import java.util.Date;
 import org.adligo.models.params.client.I_TemplateParams;
 import org.adligo.models.params.client.ParamDecorator;
 
-public class TestParamDecorator extends ParamDecorator {
+public class MockParamDecorator extends ParamDecorator {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	/**
@@ -14,7 +14,7 @@ public class TestParamDecorator extends ParamDecorator {
 	 */
 	private static final long serialVersionUID = -712990651675949276L;
 
-	public TestParamDecorator(I_TemplateParams delegate) {
+	public MockParamDecorator(I_TemplateParams delegate) {
 		super(delegate);
 	}
 	
@@ -49,7 +49,7 @@ public class TestParamDecorator extends ParamDecorator {
 	@Override
 	public I_TemplateParams getNestedParams() {
 		// TODO Auto-generated method stub
-		return new TestParamDecorator(super.getNestedParams());
+		return new MockParamDecorator(super.getNestedParams());
 	}
 
 }

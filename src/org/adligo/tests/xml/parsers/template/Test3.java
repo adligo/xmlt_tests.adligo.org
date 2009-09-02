@@ -49,7 +49,7 @@ public class Test3 extends TimedTest {
     long start = System.nanoTime();
     String sResult = TemplateParserEngine.parse(
     		templates.getTemplate("persons"),
-    		new TestParamDecorator(params));
+    		new MockParamDecorator(params));
     long end = System.nanoTime();
     super.addTime(end - start);
     

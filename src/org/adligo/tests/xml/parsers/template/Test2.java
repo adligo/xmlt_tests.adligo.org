@@ -66,7 +66,7 @@ public class Test2 extends TimedTest {
     templates.getTemplate("persons");
     long start = System.nanoTime();
     String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"), 
-    		new TestParamDecorator(params));
+    		new MockParamDecorator(params));
     long end = System.nanoTime();
     super.addTime(end - start);
     /*
