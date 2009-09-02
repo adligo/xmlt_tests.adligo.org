@@ -25,13 +25,13 @@ public class Test2 extends TimedTest {
                 "   WHERE" + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
                 "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
                 "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED +
-                "    " + XMLBuilder.UNIX_LINE_FEED + "     " + XMLBuilder.UNIX_LINE_FEED + 
-                "       (" + XMLBuilder.UNIX_LINE_FEED + "         ( birthday >= '01/01/2001' " + XMLBuilder.UNIX_LINE_FEED +
+                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
+                "      (" + XMLBuilder.UNIX_LINE_FEED + "        ( birthday >= '01/01/2001' " + XMLBuilder.UNIX_LINE_FEED +
                 "           AND  birthday <= '02/01/2001' " + XMLBuilder.UNIX_LINE_FEED + 
-                "         )" + XMLBuilder.UNIX_LINE_FEED + "          OR " + XMLBuilder.UNIX_LINE_FEED +
+                "        )" + XMLBuilder.UNIX_LINE_FEED + "         OR " + XMLBuilder.UNIX_LINE_FEED +
                 "        ( birthday >= '01/01/2002' " + XMLBuilder.UNIX_LINE_FEED +
-                "           AND  birthday <= '02/01/2002' " + XMLBuilder.UNIX_LINE_FEED + "         )" + XMLBuilder.UNIX_LINE_FEED +
-                "        " + XMLBuilder.UNIX_LINE_FEED + "       )" ) ;
+                "           AND  birthday <= '02/01/2002' " + XMLBuilder.UNIX_LINE_FEED + "        )" + XMLBuilder.UNIX_LINE_FEED +
+                "        " + XMLBuilder.UNIX_LINE_FEED + "      )" ) ;
   Templates templates = new Templates();
   private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
   
@@ -69,7 +69,23 @@ public class Test2 extends TimedTest {
     		new TestParamDecorator(params));
     long end = System.nanoTime();
     super.addTime(end - start);
-    
+    /*
+    if ( !sKey.equals(sResult)) {
+    	char [] key = sKey.toCharArray();
+    	char [] res = sResult.toCharArray();
+    	
+    	for (int i = 0; i < key.length; i++) {
+			if (key[i] != res[i]) {
+				System.out.println("character " + i);
+				System.out.println(sKey.substring(i - 30, i) + "HERE" +
+						sKey.substring(i, i ));
+				break;
+			}
+		}
+    }
+    System.out.println("start \n" + sKey + "\n end");
+    System.out.println("start \n" + sResult + "\n end");
+    */
     assertEquals(sKey,sResult);
   }
 }
