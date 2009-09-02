@@ -8,8 +8,7 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
-import junit.framework.*;
-import java.lang.reflect.*;
+import junit.framework.Test;
 
 public class Suite extends org.adligo.tests.Suite {
   public static Test suite() {

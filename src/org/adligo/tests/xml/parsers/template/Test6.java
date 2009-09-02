@@ -12,9 +12,8 @@ import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
 import org.adligo.models.params.client.XMLBuilder;
 import org.adligo.tests.InitJ2SE;
-import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
-import junit.framework.TestCase;
+import org.adligo.xml.parsers.template.Templates;
 
 public class Test6 extends TimedTest {
   private static final String sKey = new String("SELECT  TOP  " + XMLBuilder.UNIX_LINE_FEED +

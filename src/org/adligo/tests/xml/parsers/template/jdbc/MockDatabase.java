@@ -3,7 +3,6 @@ package org.adligo.tests.xml.parsers.template.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Iterator;
 
 import org.adligo.i.log.client.Log;
@@ -11,11 +10,11 @@ import org.adligo.i.log.client.LogFactory;
 import org.adligo.models.params.client.Param;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.Templates;
-import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
 import org.adligo.xml.parsers.template.jdbc.JdbcEngineInput;
+import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
 
-public class TestDatabase {
-	private static final Log log = LogFactory.getLog(TestDatabase.class);
+public class MockDatabase {
+	private static final Log log = LogFactory.getLog(MockDatabase.class);
 	private static boolean createdDb = false;
 	private static Connection connection;
 	

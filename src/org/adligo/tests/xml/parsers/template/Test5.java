@@ -11,9 +11,8 @@ package org.adligo.tests.xml.parsers.template;
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
 import org.adligo.models.params.client.XMLBuilder;
-import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
-import junit.framework.TestCase;
+import org.adligo.xml.parsers.template.Templates;
 
 public class Test5 extends TimedTest {
   private static final String sKey = new String("SELECT " + XMLBuilder.UNIX_LINE_FEED + 

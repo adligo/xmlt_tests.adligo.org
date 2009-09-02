@@ -3,14 +3,9 @@ package org.adligo.tests.xml.parsers.template.jdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.adligo.i.log.client.Log;
 import org.adligo.i.log.client.LogFactory;
-import org.adligo.models.params.client.I_Operators;
-import org.adligo.models.params.client.Operators;
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
 import org.adligo.models.params.client.SqlOperators;
@@ -19,8 +14,8 @@ import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.jdbc.BaseSqlOperators;
-import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
 import org.adligo.xml.parsers.template.jdbc.JdbcEngineInput;
+import org.adligo.xml.parsers.template.jdbc.JdbcTemplateParserEngine;
 import org.adligo.xml.parsers.template.jdbc.PrettyParamDecorator;
 
 
@@ -31,7 +26,7 @@ public class TestJdbcQueries extends ATest {
 	
 	
 	public void setUp() throws SQLException {
-		TestDatabase.createTestDb();
+		MockDatabase.createTestDb();
 		templates.parseResource("/org/adligo/tests/xml/parsers/template/jdbc/Persons2_0_SQL.xml");
 	}
 	
@@ -43,7 +38,7 @@ public class TestJdbcQueries extends ATest {
 		jdbcValues.setParams(params);
 		
 		jdbcValues.setTemplate(template);
-		jdbcValues.setConnection(TestDatabase.getMemConnection());
+		jdbcValues.setConnection(MockDatabase.getMemConnection());
 		ResultSet rs = JdbcTemplateParserEngine.query(jdbcValues);
 		return rs;
 	}
