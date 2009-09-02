@@ -11,22 +11,27 @@ package org.adligo.tests.xml.parsers.template;
 import java.text.SimpleDateFormat;
 
 import org.adligo.models.params.client.Params;
+import org.adligo.models.params.client.XMLBuilder;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 
 public class Test2 extends TimedTest {
-  private static final String sKey = new String("SELECT \r\n" +
-		  		"  \r\n" +
-		  		"  \r\n" +
-  				"  fname, mname, lname, nickname, birthday, comment\r\n" +
-  				"  \r\n" +
-  				"  FROM persons p\r\n" +
-                "   WHERE\r\n    \r\n    \r\n    \r\n    \r\n    \r\n" +
-                "    \r\n    \r\n      (\r\n        ( birthday >= '01/01/2001' \r\n" +
-                "           AND  birthday <= '02/01/2001' \r\n        )\r\n         OR \r\n" +
-                "        ( birthday >= '01/01/2002' \r\n" +
-                "           AND  birthday <= '02/01/2002' \r\n        )\r\n" +
-                "        \r\n      )" ) ;
+  private static final String sKey = new String("SELECT " + XMLBuilder.UNIX_LINE_FEED +
+		  		"  " + XMLBuilder.UNIX_LINE_FEED +
+		  		"  " + XMLBuilder.UNIX_LINE_FEED +
+  				"  fname, mname, lname, nickname, birthday, comment" + XMLBuilder.UNIX_LINE_FEED +
+  				"  " + XMLBuilder.UNIX_LINE_FEED +
+  				"  FROM persons p" + XMLBuilder.UNIX_LINE_FEED +
+                "   WHERE" + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
+                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
+                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED +
+                "    " + XMLBuilder.UNIX_LINE_FEED + "     " + XMLBuilder.UNIX_LINE_FEED + 
+                "       (" + XMLBuilder.UNIX_LINE_FEED + "         ( birthday >= '01/01/2001' " + XMLBuilder.UNIX_LINE_FEED +
+                "           AND  birthday <= '02/01/2001' " + XMLBuilder.UNIX_LINE_FEED + 
+                "         )" + XMLBuilder.UNIX_LINE_FEED + "          OR " + XMLBuilder.UNIX_LINE_FEED +
+                "        ( birthday >= '01/01/2002' " + XMLBuilder.UNIX_LINE_FEED +
+                "           AND  birthday <= '02/01/2002' " + XMLBuilder.UNIX_LINE_FEED + "         )" + XMLBuilder.UNIX_LINE_FEED +
+                "        " + XMLBuilder.UNIX_LINE_FEED + "       )" ) ;
   Templates templates = new Templates();
   private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
   
