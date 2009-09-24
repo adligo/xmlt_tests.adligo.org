@@ -11,5 +11,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/i_log"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/j2se_util"/>
 	<classpathentry kind="var" path="HSQLDB_HOME/lib/hsqldb.jar"/>
-	<classpathentry kind="output" path="cbin"/>
+	<classpathentry kind="output" path="classes_e"/>
 </classpath>
