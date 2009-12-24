@@ -3,6 +3,7 @@
   <template name="persons">
   SELECT <param name="maxrows"> TOP <value/> </param>
   <param name="name"> fname || ' ' || lname </param>
+  <param name="namedId"> tid, version, fname || ' ' || lname </param>
   <param name="default">
   tid, version, edited, edited_by, fname, mname, lname, nickname, birthday
   </param>
