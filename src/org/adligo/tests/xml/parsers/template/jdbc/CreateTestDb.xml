@@ -152,6 +152,7 @@
 	<template name="addTableIds">
 		Insert into table_ids (name, tid) 
 		SELECT 'users',1 FROM table_ids
+		UNION SELECT 'foo',1 FROM table_ids
 		UNION SELECT 'persons',1 FROM table_ids
 		UNION SELECT 'e_address_types',1 FROM table_ids
 		UNION SELECT 'e_addresses',1 FROM table_ids

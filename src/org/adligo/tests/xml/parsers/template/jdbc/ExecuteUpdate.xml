@@ -1,0 +1,23 @@
+<templates>
+	<template name="execute">
+		CREATE TABLE 
+		<param name="tableName"><value/></param>
+		( tid int)
+	</template>
+	<!--  note Hibernate is usually a better way to do inserts and updates 
+		however sometimes you want more control over your dml statements
+	 -->
+	<template name="insert">
+		INSERT INTO table_ids (name, tid) 
+		VALUES (<param name="name"><value/></param>,<param name="tid"><value/></param>)
+	</template>
+	<template name="update">
+		UPDATE table_ids SET tid = <param name="newId"><value/></param>
+			WHERE name = <param name="name"><value/></param>
+			AND tid =  <param name="oldId"><value/></param>
+	</template>
+	<template name="update_any">
+		UPDATE table_ids SET tid = <param name="newId"><value/></param>
+			WHERE name = <param name="name"><value/></param>
+	</template>	
+</templates>
