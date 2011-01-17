@@ -8,10 +8,10 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
+import org.adligo.jse.util.JSECommonInit;
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
 import org.adligo.models.params.client.XMLBuilder;
-import org.adligo.tests.InitJ2SE;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.parsers.template.Templates;
 
@@ -34,7 +34,7 @@ public class Test6 extends TimedTest {
   Templates templates = new Templates();
 
   static {
-	  InitJ2SE.init();
+	  JSECommonInit.callLogDebug(Test6.class.getName());
   }
   
  public Test6(String s) {
