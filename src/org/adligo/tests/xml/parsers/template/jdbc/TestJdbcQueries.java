@@ -1,5 +1,6 @@
 package org.adligo.tests.xml.parsers.template.jdbc;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class TestJdbcQueries extends ATest {
 	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
 	
-	public void setUp() throws SQLException {
+	public void setUp() throws SQLException, IOException {
 		MockDatabase.createTestDb();
 		templates.parseResource(
 				"/org/adligo/tests/xml/parsers/template/jdbc/Persons2_0_SQL.xml");

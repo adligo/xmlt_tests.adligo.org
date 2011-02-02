@@ -8,6 +8,8 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
+import java.io.IOException;
+
 import org.adligo.jse.util.JSECommonInit;
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
@@ -41,7 +43,7 @@ public class Test6 extends TimedTest {
   super(s);
  }
 
-  public void setUp() {
+  public void setUp() throws IOException {
     templates.parseResource("/org/adligo/tests/xml/parsers/template/PersonsSQL.xml");
   }
 

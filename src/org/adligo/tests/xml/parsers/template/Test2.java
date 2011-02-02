@@ -8,6 +8,7 @@ package org.adligo.tests.xml.parsers.template;
  * @author
  * @version 1.0
  */
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import org.adligo.models.params.client.Params;
@@ -39,7 +40,7 @@ public class Test2 extends TimedTest {
   super(s);
  }
 
-  public void setUp() {
+  public void setUp() throws IOException {
     templates.parseResource("/org/adligo/tests/xml/parsers/template/PersonsSQL.xml");
   }
 

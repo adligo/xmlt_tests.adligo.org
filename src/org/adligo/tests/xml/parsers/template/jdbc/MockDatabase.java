@@ -1,5 +1,6 @@
 package org.adligo.tests.xml.parsers.template.jdbc;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class MockDatabase {
 		return connection;
 	}
 	
-	public static synchronized void createTestDb() throws SQLException {
+	public static synchronized void createTestDb() throws SQLException, IOException {
 		if (!createdDb) {
 			try {
 				Class.forName("org.hsqldb.jdbcDriver").newInstance();
