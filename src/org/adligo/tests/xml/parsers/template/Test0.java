@@ -38,34 +38,38 @@ public class Test0 extends TimedTest {
   }
 
   public void test0() {
-    Params params = new Params();
-    params.addParam("default");
-    Params whereArgs = new Params();
-    
-    //this will allow operators to be checked for validity
-    // aginst a set of allowed Strings
-    //
-    // the values can get set via jdbc prepaired statements
-    // (assuming your using a database,
-    // and not a ldap, xml, or other storage solution)
-    // to prevent sql injection
-    Param oidParam = new Param("oid", new String[] {"IN (", ")"});
-    oidParam.addValue(1);
-    oidParam.addValue(2);
-    whereArgs.addParam(oidParam);
-    whereArgs.addParam("fname","LIKE", "joe");
-    whereArgs.addParam("fname","LIKE", "bob");
-    Param where = new Param("where", whereArgs);
-    params.addParam(where);
-    
-    //inital parse
-    templates.getTemplate("persons");
-    long start = System.nanoTime();
-    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"),
-    			new MockParamDecorator(params));
-    long end = System.nanoTime();
-    super.addTime(end - start);
-    
-    assertEquals(sKey, sResult);
+	assertZero();
+  }
+
+  public void assertZero() {
+		Params params = new Params();
+	    params.addParam("default");
+	    Params whereArgs = new Params();
+	    
+	    //this will allow operators to be checked for validity
+	    // aginst a set of allowed Strings
+	    //
+	    // the values can get set via jdbc prepaired statements
+	    // (assuming your using a database,
+	    // and not a ldap, xml, or other storage solution)
+	    // to prevent sql injection
+	    Param oidParam = new Param("oid", new String[] {"IN (", ")"});
+	    oidParam.addValue(1);
+	    oidParam.addValue(2);
+	    whereArgs.addParam(oidParam);
+	    whereArgs.addParam("fname","LIKE", "joe");
+	    whereArgs.addParam("fname","LIKE", "bob");
+	    Param where = new Param("where", whereArgs);
+	    params.addParam(where);
+	    
+	    //inital parse
+	    templates.getTemplate("persons");
+	    long start = System.nanoTime();
+	    String sResult = TemplateParserEngine.parse(templates.getTemplate("persons"),
+	    			new MockParamDecorator(params));
+	    long end = System.nanoTime();
+	    super.addTime(end - start);
+	    
+	    assertEquals(sKey, sResult);
   }
 }

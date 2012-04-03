@@ -243,6 +243,18 @@ public class TestJdbcQueries extends ATest {
 	}
 	
 	public void testInQuery() throws Exception {
+		//for (int i = 0; i < 1000; i++) {
+			assertInQuery();
+		//}
+	}
+	
+	public void testMemoryLeak() throws Exception {
+		System.out.println("debug and put a breakpoint here to collect memory results");
+		//Thread.sleep(Integer.MAX_VALUE);
+	}
+
+
+	public void assertInQuery() throws SQLException {
 		Params params = new Params();
 		params.addParam("default");
 		Params where_params = params.addWhereParams();

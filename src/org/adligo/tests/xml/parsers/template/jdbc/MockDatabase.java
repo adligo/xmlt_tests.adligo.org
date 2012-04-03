@@ -37,17 +37,22 @@ public class MockDatabase {
 			Templates templates = new Templates();
 			templates.parseResource("/org/adligo/tests/xml/parsers/template/jdbc/CreateTestDb.xml");
 			
-			JdbcEngineInput values = new JdbcEngineInput();
-			values.setParams(new Param());
-			values.setConnection(con);
 			
 			Iterator<String> names = templates.getTemplateNames();
 			while (names.hasNext()) {
+				JdbcEngineInput values = getNewInput(con);
 				executeTemplate(templates, values, names.next());
 			}
 			createdDb = true;
 		}
 		
+	}
+
+	public static JdbcEngineInput getNewInput(Connection con) {
+		JdbcEngineInput values = new JdbcEngineInput();
+		values.setParams(new Param());
+		values.setConnection(con);
+		return values;
 	}
 
 	private static void executeTemplate(Templates templates,
