@@ -73,7 +73,7 @@ public class TestJdbcQueries extends ATest {
 		assertEquals(0, rs.getInt(2));
 		assertEquals(1, rs.getInt(4));
 		assertEquals("john", rs.getString(5));
-		assertNull(rs.getString(6));
+		assertEquals("", rs.getString(6));
 		assertEquals("doe",rs.getString(7));
 		
 		assertFalse(rs.next());
@@ -91,7 +91,7 @@ public class TestJdbcQueries extends ATest {
 		assertEquals(0, rs.getInt(2));
 		assertEquals(1, rs.getInt(4));
 		assertEquals("lisa", rs.getString(5));
-		assertNull(rs.getString(6));
+		assertEquals("", rs.getString(6));
 		assertEquals("Smith",rs.getString(7));
 		
 		assertFalse(rs.next());

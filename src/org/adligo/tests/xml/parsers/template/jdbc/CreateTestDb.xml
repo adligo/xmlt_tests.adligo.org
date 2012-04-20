@@ -24,10 +24,10 @@
 		CREATE TABLE persons (
 			tid BIGINT PRIMARY KEY, 
 			version int NOT NULL,
-			fname VARCHAR(100),
-			mname VARCHAR(100),
-			lname VARCHAR(200),
-			nickname VARCHAR(200),
+			fname VARCHAR(100) NOT NULL,
+			mname VARCHAR(100) NOT NULL,
+			lname VARCHAR(200) NOT NULL,
+			nickname VARCHAR(200) NOT NULL,
 			birthday date,
 			died date,
 			is_alive boolean,
@@ -177,17 +177,17 @@
 		UPDATE table_ids SET tid = 4 WHERE name = 'persons';
 	</template>
 	<template name="addJohn">
-		INSERT INTO persons (tid, version, fname, lname, edited, edited_by, is_alive, height) 
-		VALUES (1, 0, 'john','doe', CURRENT_TIMESTAMP, 1, false, 3.23);
+		INSERT INTO persons (tid, version, fname, mname, nickname, lname, edited, edited_by, is_alive, height) 
+		VALUES (1, 0, 'john','','','doe', CURRENT_TIMESTAMP, 1, false, 3.23);
 	</template>
 	<!--  date time that's testible -->
 	<template name="addLisa">
-		INSERT INTO persons (tid, version, fname, lname, edited, edited_by, is_alive, height) 
-		VALUES (2, 0, 'lisa','Smith', '2007-12-14', 1, true, 2.23);
+		INSERT INTO persons (tid, version, fname, mname,nickname, lname, edited, edited_by, is_alive, height) 
+		VALUES (2, 0, 'lisa','','','Smith', '2007-12-14', 1, true, 2.23);
 	</template>
 	<template name="addChris">
-		INSERT INTO persons (tid, version, fname, lname, edited, edited_by, is_alive, height) 
-		VALUES (3, 0, 'Chris','Holst', CURRENT_TIMESTAMP, 1, true, 3.1);
+		INSERT INTO persons (tid, version, fname, mname,nickname, lname, edited, edited_by, is_alive, height) 
+		VALUES (3, 0, 'Chris','','','Holst', CURRENT_TIMESTAMP, 1, true, 3.1);
 	</template>
 	<template name="reservePersons_to_addr_types">
 		UPDATE table_ids SET tid = 3 WHERE name = 'persons_to_address_types';
