@@ -10,32 +10,32 @@ package org.adligo.tests.xml.parsers.template;
  */
 import java.io.IOException;
 
+import org.adligo.models.params.client.I_XMLBuilder;
 import org.adligo.models.params.client.Param;
 import org.adligo.models.params.client.Params;
-import org.adligo.models.params.client.XMLBuilder;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.parsers.template.Templates;
 
 public class Test5 extends TimedTest {
-  private static final String sKey = new String("SELECT " + XMLBuilder.UNIX_LINE_FEED + 
-		  "  " + XMLBuilder.UNIX_LINE_FEED + 
-		  "  " + XMLBuilder.UNIX_LINE_FEED + 
-  		"  fname, mname, lname, nickname, birthday, comment" + XMLBuilder.UNIX_LINE_FEED + 
-  		"  " + XMLBuilder.UNIX_LINE_FEED + 
-            "  FROM persons p" + XMLBuilder.UNIX_LINE_FEED + 
-            "   WHERE" + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-            "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-            "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-            "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-            "    " + XMLBuilder.UNIX_LINE_FEED + 
-            "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND" + XMLBuilder.UNIX_LINE_FEED + 
-            "        " + XMLBuilder.UNIX_LINE_FEED + "        " + XMLBuilder.UNIX_LINE_FEED + 
-            "        " + XMLBuilder.UNIX_LINE_FEED + 
-            "          E.type IN (1,2))" + XMLBuilder.UNIX_LINE_FEED + 
-            "     AND " + XMLBuilder.UNIX_LINE_FEED + 
-            "         EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND" + XMLBuilder.UNIX_LINE_FEED + 
-            "        " + XMLBuilder.UNIX_LINE_FEED + "         E.edited_by IN (3,4)" + XMLBuilder.UNIX_LINE_FEED + 
-            "        " + XMLBuilder.UNIX_LINE_FEED + "        )");
+  private static final String sKey = new String("SELECT " + I_XMLBuilder.UNIX_LINE_FEED + 
+		  "  " + I_XMLBuilder.UNIX_LINE_FEED + 
+		  "  " + I_XMLBuilder.UNIX_LINE_FEED + 
+  		"  fname, mname, lname, nickname, birthday, comment" + I_XMLBuilder.UNIX_LINE_FEED + 
+  		"  " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "  FROM persons p" + I_XMLBuilder.UNIX_LINE_FEED + 
+            "   WHERE" + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "        NOT EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND" + I_XMLBuilder.UNIX_LINE_FEED + 
+            "        " + I_XMLBuilder.UNIX_LINE_FEED + "        " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "        " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "          E.type IN (1,2))" + I_XMLBuilder.UNIX_LINE_FEED + 
+            "     AND " + I_XMLBuilder.UNIX_LINE_FEED + 
+            "         EXISTS (SELECT tid FROM o_e_addresses E WHERE O.tid = E.fk AND" + I_XMLBuilder.UNIX_LINE_FEED + 
+            "        " + I_XMLBuilder.UNIX_LINE_FEED + "         E.edited_by IN (3,4)" + I_XMLBuilder.UNIX_LINE_FEED + 
+            "        " + I_XMLBuilder.UNIX_LINE_FEED + "        )");
   Templates templates = new Templates();
 
  public Test5(String s) {

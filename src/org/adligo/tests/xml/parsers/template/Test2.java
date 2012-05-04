@@ -11,28 +11,28 @@ package org.adligo.tests.xml.parsers.template;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.adligo.models.params.client.I_XMLBuilder;
 import org.adligo.models.params.client.Params;
-import org.adligo.models.params.client.XMLBuilder;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 
 public class Test2 extends TimedTest {
-  private static final String sKey = new String("SELECT " + XMLBuilder.UNIX_LINE_FEED +
-		  		"  " + XMLBuilder.UNIX_LINE_FEED +
-		  		"  " + XMLBuilder.UNIX_LINE_FEED +
-  				"  fname, mname, lname, nickname, birthday, comment" + XMLBuilder.UNIX_LINE_FEED +
-  				"  " + XMLBuilder.UNIX_LINE_FEED +
-  				"  FROM persons p" + XMLBuilder.UNIX_LINE_FEED +
-                "   WHERE" + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED +
-                "    " + XMLBuilder.UNIX_LINE_FEED + "    " + XMLBuilder.UNIX_LINE_FEED + 
-                "      (" + XMLBuilder.UNIX_LINE_FEED + "        ( birthday >= '01/01/2001' " + XMLBuilder.UNIX_LINE_FEED +
-                "           AND  birthday <= '02/01/2001' " + XMLBuilder.UNIX_LINE_FEED + 
-                "        )" + XMLBuilder.UNIX_LINE_FEED + "         OR " + XMLBuilder.UNIX_LINE_FEED +
-                "        ( birthday >= '01/01/2002' " + XMLBuilder.UNIX_LINE_FEED +
-                "           AND  birthday <= '02/01/2002' " + XMLBuilder.UNIX_LINE_FEED + "        )" + XMLBuilder.UNIX_LINE_FEED +
-                "        " + XMLBuilder.UNIX_LINE_FEED + "      )" ) ;
+  private static final String sKey = new String("SELECT " + I_XMLBuilder.UNIX_LINE_FEED +
+		  		"  " + I_XMLBuilder.UNIX_LINE_FEED +
+		  		"  " + I_XMLBuilder.UNIX_LINE_FEED +
+  				"  fname, mname, lname, nickname, birthday, comment" + I_XMLBuilder.UNIX_LINE_FEED +
+  				"  " + I_XMLBuilder.UNIX_LINE_FEED +
+  				"  FROM persons p" + I_XMLBuilder.UNIX_LINE_FEED +
+                "   WHERE" + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+                "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+                "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED +
+                "    " + I_XMLBuilder.UNIX_LINE_FEED + "    " + I_XMLBuilder.UNIX_LINE_FEED + 
+                "      (" + I_XMLBuilder.UNIX_LINE_FEED + "        ( birthday >= '01/01/2001' " + I_XMLBuilder.UNIX_LINE_FEED +
+                "           AND  birthday <= '02/01/2001' " + I_XMLBuilder.UNIX_LINE_FEED + 
+                "        )" + I_XMLBuilder.UNIX_LINE_FEED + "         OR " + I_XMLBuilder.UNIX_LINE_FEED +
+                "        ( birthday >= '01/01/2002' " + I_XMLBuilder.UNIX_LINE_FEED +
+                "           AND  birthday <= '02/01/2002' " + I_XMLBuilder.UNIX_LINE_FEED + "        )" + I_XMLBuilder.UNIX_LINE_FEED +
+                "        " + I_XMLBuilder.UNIX_LINE_FEED + "      )" ) ;
   Templates templates = new Templates();
   private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
   
