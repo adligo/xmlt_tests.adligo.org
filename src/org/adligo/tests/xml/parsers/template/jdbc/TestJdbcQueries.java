@@ -31,7 +31,8 @@ public class TestJdbcQueries extends ATest {
 	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
 	
-	public void setUp() throws SQLException, IOException {
+	public void setUp() throws Exception {
+		super.setUp();
 		MockDatabase.createTestDb();
 		templates.parseResource(
 				"/org/adligo/tests/xml/parsers/template/jdbc/Persons2_0_SQL.xml");

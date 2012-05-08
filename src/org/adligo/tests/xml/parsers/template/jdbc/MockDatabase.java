@@ -40,8 +40,12 @@ public class MockDatabase {
 			
 			Iterator<String> names = templates.getTemplateNames();
 			while (names.hasNext()) {
+				String name = names.next();
+				if (log.isInfoEnabled()) {
+					log.info("executing template " + name);
+				}
 				JdbcEngineInput values = getNewInput(con);
-				executeTemplate(templates, values, names.next());
+				executeTemplate(templates, values, name);
 			}
 			createdDb = true;
 		}
