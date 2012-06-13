@@ -17,6 +17,7 @@
     <param name="mname" delimiter="," separator=" OR " pre="(" post=")"> mname <operator/> <value/> </param>
     <param name="lname" delimiter="," separator=" OR " pre="(" post=")"> lname <operator/> <value/> </param>
     <param name="nickname" delimiter="," separator=" OR " pre="(" post=")"> nickname <operator/> <value/> </param>
+    <param name="cash" delimiter="," separator=" OR " pre="(" post=")"> cash <operator/> <value/> </param>
     <param name="birthday" >
       (<param name="range" separator=" OR " nested_separator=" AND ">
         (<param name="start_range"> birthday <operator/> <value/> </param>

@@ -1,6 +1,7 @@
 package org.adligo.tests.xml.parsers.template.jdbc;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -176,6 +177,20 @@ public class TestJdbcQueries extends ATest {
 		
 	}
 
+
+	public void testBigDecimalQuery() throws Exception {
+		Params params = new Params();
+		params.addParam("default");
+		Params where_params = params.addWhereParams();
+		where_params.addParam("cash",SqlOperators.EQUALS, new BigDecimal("7.77"));
+		
+		Template personsTemp = templates.getTemplate("persons");
+		prettySql(params, personsTemp);
+		assertJohnDoe(params, personsTemp);
+		
+		
+	}
+	
 	public void testBooleanQuery() throws Exception {
 		Params params = new Params();
 		params.addParam("default");
