@@ -4,10 +4,10 @@
 	<classpathentry kind="src" path="/xmlt"/>
 	<classpathentry kind="src" path="/params"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/tests"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i_log"/>
-	<classpathentry kind="var" path="HSQLDB_HOME/lib/hsqldb.jar"/>
+	<classpathentry kind="var" path="MVN_REPO/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar"/>	
 	<classpathentry combineaccessrules="false" kind="src" path="/jse_util"/>
 	<classpathentry kind="output" path="classes_e"/>
 </classpath>
