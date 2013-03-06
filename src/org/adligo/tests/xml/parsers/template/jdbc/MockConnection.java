@@ -58,7 +58,7 @@ public class MockConnection implements Connection {
 	}
 
 	public Statement createStatement() throws SQLException {
-		Statement toRet =  delegate.createStatement();
+		Statement toRet = delegate.createStatement();
 		stmtsReturned.add(toRet);
 		return toRet;
 	}
@@ -72,7 +72,7 @@ public class MockConnection implements Connection {
 	}
 
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
-		PreparedStatement toRet =  delegate.prepareStatement(sql);
+		PreparedStatement toRet =   new MockPrepairedStatement(delegate.prepareStatement(sql));
 		prepStmtsReturned.add(toRet);
 		return toRet;
 	}
