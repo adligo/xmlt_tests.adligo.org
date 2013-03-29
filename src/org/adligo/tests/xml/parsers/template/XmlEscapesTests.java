@@ -24,8 +24,31 @@ public class XmlEscapesTests extends ATest {
 		result = TemplateParserEngine.parse(temp, params);
 		assertEquals("&>>", result);
 		
-		temp = templates.getTemplate("simple_malform");
-		result = TemplateParserEngine.parse(temp, new Params());
-		assertEquals(">", result);
 	}
+	
+	public void testCarrots() {
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/Carrots.xml", true);
+		Template temp = templates.getTemplate("simple_<>");
+		String result = TemplateParserEngine.parse(temp, new Params());
+		assertEquals("<>", result);
+		
+		temp = templates.getTemplate("simple_<");
+		result = TemplateParserEngine.parse(temp, new Params());
+		assertEquals("<", result);
+		
+		temp = templates.getTemplate("simple_>");
+		Params params = new Params();
+		params.addParam("bar");
+		result = TemplateParserEngine.parse(temp, params);
+		assertEquals(">", result);
+		
+		temp = templates.getTemplate("simple_><");
+		result = TemplateParserEngine.parse(temp, new Params());
+		assertEquals("><", result);
+		
+		temp = templates.getTemplate("ab");
+		result = TemplateParserEngine.parse(temp, new Params());
+		assertEquals("a <> b", result);
+	}
+	
 }
