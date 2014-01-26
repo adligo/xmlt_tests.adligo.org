@@ -1,3 +1,5 @@
 Date,Package,Coverage,Instructions
 11/14/2012,org.adligo.xml.parsers.template,74.3%,1834
 11/14/2012,org.adligo.xml.parsers.template.jdbc,68.8%,1024
+01/26/2014,org.adligo.xml.parsers.template,65.0%,1878
+01/26/2014,org.adligo.xml.parsers.template.jdbc,66.9%,1038
