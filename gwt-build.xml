@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="gwt-jar" name="gwt-xmlt_tests">
-    <import file="${user.home}/conf/adligo/gwt-build.xml"/>
+<project basedir="." default="gwt_jar_and_test" name="gwt-xmlt_tests">
+    <import file="${user.home}/conf/adligo/gwt-test-build.xml"/>
 </project>
