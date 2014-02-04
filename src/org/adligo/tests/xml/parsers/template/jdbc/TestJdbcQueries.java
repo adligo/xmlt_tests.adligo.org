@@ -182,7 +182,7 @@ public class TestJdbcQueries extends ATest {
 		Params params = new Params();
 		params.addParam("default");
 		Params where_params = params.addWhereParams();
-		where_params.addParam("cash",SqlOperators.EQUALS, new BigDecimal("7.77"));
+		where_params.addParamBigDecimal("cash",SqlOperators.EQUALS, "7.77");
 		
 		Template personsTemp = templates.getTemplate("persons");
 		prettySql(params, personsTemp);
