@@ -9,7 +9,7 @@ import org.adligo.xml.parsers.template.Templates;
 public class XmlEscapesTests extends ATest {
 
 	public void testSimpleXmlEscapes() {
-		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/Escapes.xml", true);
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/tests/Escapes.xml", true);
 		Template temp = templates.getTemplate("simple");
 		String result = TemplateParserEngine.parse(temp, new Params());
 		assertEquals("><&", result);
@@ -27,7 +27,7 @@ public class XmlEscapesTests extends ATest {
 	}
 	
 	public void testCarrots() {
-		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/Carrots.xml", true);
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/tests/Carrots.xml", true);
 		Template temp = templates.getTemplate("simple_<>");
 		String result = TemplateParserEngine.parse(temp, new Params());
 		assertEquals("<>", result);

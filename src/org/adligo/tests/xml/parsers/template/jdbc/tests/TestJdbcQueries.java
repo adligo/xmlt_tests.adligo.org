@@ -36,9 +36,9 @@ public class TestJdbcQueries extends ATest {
 		super.setUp();
 		MockDatabase.createTestDb();
 		templates.parseResource(
-				"/org/adligo/tests/xml/parsers/template/jdbc/Persons2_0_SQL.xml");
+				"/org/adligo/tests/xml/parsers/template/jdbc/tests/Persons2_0_SQL.xml");
 		executeUpdateTemplates.parseResource(
-				"/org/adligo/tests/xml/parsers/template/jdbc/ExecuteUpdate.xml");
+				"/org/adligo/tests/xml/parsers/template/jdbc/tests/ExecuteUpdate.xml");
 	}
 	
 	

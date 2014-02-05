@@ -6,7 +6,7 @@ import org.adligo.xml.parsers.template.Templates;
 public class TemplatesTests extends ATest {
 
 	public void testCarrots() {
-		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/Carrots.xml", true);
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/tests/Carrots.xml", true);
 		
 		IllegalArgumentException caught = null;
 		try {

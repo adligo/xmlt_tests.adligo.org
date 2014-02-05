@@ -32,7 +32,7 @@ public class Test3 extends TimedTest {
  }
 
   public void setUp() throws IOException {
-    templates.parseResource("/org/adligo/tests/xml/parsers/template/PersonsSQL.xml");
+    templates.parseResource("/org/adligo/tests/xml/parsers/template/tests/PersonsSQL.xml");
   }
 
   public void test3() {

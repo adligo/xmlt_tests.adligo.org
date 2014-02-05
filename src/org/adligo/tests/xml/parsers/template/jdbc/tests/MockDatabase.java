@@ -35,7 +35,7 @@ public class MockDatabase {
 			}
 			Connection con = getMemConnection();
 			Templates templates = new Templates();
-			templates.parseResource("/org/adligo/tests/xml/parsers/template/jdbc/CreateTestDb.xml");
+			templates.parseResource("/org/adligo/tests/xml/parsers/template/jdbc/tests/CreateTestDb.xml");
 			
 			
 			Iterator<String> names = templates.getTemplateNames();
