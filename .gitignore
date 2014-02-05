@@ -1,1 +1,6 @@
-/classes_e
+classes_e/
+classes/
+bin/
+xmlt_tests.jar
+test_reports/
+
