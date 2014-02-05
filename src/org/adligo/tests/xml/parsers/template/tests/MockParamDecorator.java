@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template;
+package org.adligo.tests.xml.parsers.template.tests;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

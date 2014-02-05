@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template;
+package org.adligo.tests.xml.parsers.template.tests;
 
 import org.adligo.models.params.client.Params;
 import org.adligo.tests.ATest;
