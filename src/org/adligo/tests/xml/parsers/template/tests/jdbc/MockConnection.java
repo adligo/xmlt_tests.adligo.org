@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template.jdbc.tests;
+package org.adligo.tests.xml.parsers.template.tests.jdbc;
 
 import java.sql.Array;
 import java.sql.Blob;
