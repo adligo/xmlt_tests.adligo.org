@@ -1,6 +1,6 @@
-package org.adligo.tests.xml.parsers.template.tests;
+package org.adligo.tests.xml.parsers.template_tests;
 
-import org.adligo.models.params.client.Params;
+import org.adligo.models.params.shared.Params;
 import org.adligo.tests.ATest;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
@@ -9,7 +9,7 @@ import org.adligo.xml.parsers.template.Templates;
 public class XmlEscapesTests extends ATest {
 
 	public void testSimpleXmlEscapes() {
-		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/tests/Escapes.xml", true);
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template_tests/Escapes.xml", true);
 		Template temp = templates.getTemplate("simple");
 		String result = TemplateParserEngine.parse(temp, new Params());
 		assertEquals("><&", result);
@@ -27,7 +27,7 @@ public class XmlEscapesTests extends ATest {
 	}
 	
 	public void testCarrots() {
-		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template/tests/Carrots.xml", true);
+		Templates templates = new Templates("/org/adligo/tests/xml/parsers/template_tests/Carrots.xml", true);
 		Template temp = templates.getTemplate("simple_<>");
 		String result = TemplateParserEngine.parse(temp, new Params());
 		assertEquals("<>", result);

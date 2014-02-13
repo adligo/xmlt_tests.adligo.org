@@ -1,10 +1,10 @@
-package org.adligo.tests.xml.parsers.template.tests;
+package org.adligo.tests.xml.parsers.template_tests;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.adligo.models.params.client.I_TemplateParams;
-import org.adligo.models.params.client.ParamDecorator;
+import org.adligo.models.params.shared.I_TemplateParams;
+import org.adligo.models.params.shared.ParamDecorator;
 
 public class MockParamDecorator extends ParamDecorator {
 

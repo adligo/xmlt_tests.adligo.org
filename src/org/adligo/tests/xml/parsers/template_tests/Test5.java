@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template.tests;
+package org.adligo.tests.xml.parsers.template_tests;
 
 /**
  * Title:
@@ -10,9 +10,9 @@ package org.adligo.tests.xml.parsers.template.tests;
  */
 import java.io.IOException;
 
-import org.adligo.models.params.client.I_XMLBuilder;
-import org.adligo.models.params.client.Param;
-import org.adligo.models.params.client.Params;
+import org.adligo.models.params.shared.I_XMLBuilder;
+import org.adligo.models.params.shared.Param;
+import org.adligo.models.params.shared.Params;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
 import org.adligo.xml.parsers.template.Templates;
 
@@ -43,7 +43,7 @@ public class Test5 extends TimedTest {
  }
 
   public void setUp() throws IOException {
-    templates.parseResource("/org/adligo/tests/xml/parsers/template/tests/PersonsSQL.xml");
+    templates.parseResource("/org/adligo/tests/xml/parsers/template_tests/PersonsSQL.xml");
   }
 
   public void test5() {

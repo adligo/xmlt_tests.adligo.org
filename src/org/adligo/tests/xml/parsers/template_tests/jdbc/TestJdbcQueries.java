@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template.tests.jdbc;
+package org.adligo.tests.xml.parsers.template_tests.jdbc;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
-import org.adligo.models.params.client.Param;
-import org.adligo.models.params.client.Params;
-import org.adligo.models.params.client.SqlOperators;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
+import org.adligo.models.params.shared.Param;
+import org.adligo.models.params.shared.Params;
+import org.adligo.models.params.shared.SqlOperators;
 import org.adligo.tests.ATest;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.TemplateParserEngine;
@@ -36,9 +36,9 @@ public class TestJdbcQueries extends ATest {
 		super.setUp();
 		MockDatabase.createTestDb();
 		templates.parseResource(
-				"/org/adligo/tests/xml/parsers/template/tests/jdbc/Persons2_0_SQL.xml");
+				"/org/adligo/tests/xml/parsers/template_tests/jdbc/Persons2_0_SQL.xml");
 		executeUpdateTemplates.parseResource(
-				"/org/adligo/tests/xml/parsers/template/tests/jdbc/ExecuteUpdate.xml");
+				"/org/adligo/tests/xml/parsers/template_tests/jdbc/ExecuteUpdate.xml");
 	}
 	
 	

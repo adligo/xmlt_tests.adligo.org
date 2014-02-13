@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template.tests.jdbc;
+package org.adligo.tests.xml.parsers.template_tests.jdbc;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Iterator;
 
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
-import org.adligo.models.params.client.Param;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
+import org.adligo.models.params.shared.Param;
 import org.adligo.xml.parsers.template.Template;
 import org.adligo.xml.parsers.template.Templates;
 import org.adligo.xml.parsers.template.jdbc.JdbcEngineInput;
@@ -35,7 +35,7 @@ public class MockDatabase {
 			}
 			Connection con = getMemConnection();
 			Templates templates = new Templates();
-			templates.parseResource("/org/adligo/tests/xml/parsers/template/tests/jdbc/CreateTestDb.xml");
+			templates.parseResource("/org/adligo/tests/xml/parsers/template_tests/jdbc/CreateTestDb.xml");
 			
 			
 			Iterator<String> names = templates.getTemplateNames();
