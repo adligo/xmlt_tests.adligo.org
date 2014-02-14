@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template_tests;
+package org.adligo.xml.parsers.template_tests;
 
 /**
  * Title:
@@ -34,7 +34,7 @@ public class Test0 extends TimedTest {
 	 }
 
   public void setUp() throws IOException {
-    templates.parseResource("/org/adligo/tests/xml/parsers/template_tests/PersonsSQL.xml");
+    templates.parseResource("/org/adligo/xml/parsers/template_tests/PersonsSQL.xml");
   }
 
   public void test0() {

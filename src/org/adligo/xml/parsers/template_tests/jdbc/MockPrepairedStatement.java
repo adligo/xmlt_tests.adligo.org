@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template_tests.jdbc;
+package org.adligo.xml.parsers.template_tests.jdbc;
 
 import java.io.InputStream;
 import java.io.Reader;

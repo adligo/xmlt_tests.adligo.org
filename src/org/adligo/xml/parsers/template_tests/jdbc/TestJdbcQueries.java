@@ -1,4 +1,4 @@
-package org.adligo.tests.xml.parsers.template_tests.jdbc;
+package org.adligo.xml.parsers.template_tests.jdbc;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -36,9 +36,9 @@ public class TestJdbcQueries extends ATest {
 		super.setUp();
 		MockDatabase.createTestDb();
 		templates.parseResource(
-				"/org/adligo/tests/xml/parsers/template_tests/jdbc/Persons2_0_SQL.xml");
+				"/org/adligo/xml/parsers/template_tests/jdbc/Persons2_0_SQL.xml");
 		executeUpdateTemplates.parseResource(
-				"/org/adligo/tests/xml/parsers/template_tests/jdbc/ExecuteUpdate.xml");
+				"/org/adligo/xml/parsers/template_tests/jdbc/ExecuteUpdate.xml");
 	}
 	
 	
