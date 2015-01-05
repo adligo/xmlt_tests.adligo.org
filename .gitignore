@@ -1,6 +1,9 @@
-classes_e/
-classes/
-bin/
+/bin/
+/build/
+/classes/
+/classes_e/
+
+
 xmlt_tests.jar
-test_reports/
+/test_reports/
 
